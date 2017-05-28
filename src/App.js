@@ -1,19 +1,23 @@
 import React, {Component} from 'react';
+import { autoBinding } from './utils';
 
-import Bar from './components/Bar';
-import CodeEditor from './components/CodeEditor';
+import Visual from './Visual';
+import CodeEditor from './CodeEditor';
 
 import './App.css';
 
 class App extends Component {
-    constructor() {
-        super()
+    constructor(...args) {
+        super(...args)
         this.state = {
             results: [[]],
             index: 0
         }
-        this.handleRun = this.handleRun.bind(this);
-        this.handleNext = this.handleNext.bind(this);
+
+        autoBinding([
+            'handleRun',
+            'handleNext'],
+        this);
     }
 
     handleRun(results) {
@@ -35,7 +39,7 @@ class App extends Component {
         let {results, index} = this.state
         return (
             <div className = "App" >
-                <Bar list={results[index]}/>
+                <Visual list={results[index]}/>
                 <CodeEditor onRun={this.handleRun} onNext={this.handleNext} />
             </div>
         );

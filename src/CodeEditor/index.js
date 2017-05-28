@@ -1,34 +1,21 @@
 import React, { Component } from 'react';
-import {observable,autorun} from 'mobx';
 
-var swap = function (i,j,a){
-	var tmp = a[i]
-	a[i] = a[j]
-	a[j] = tmp
-}
+import CodeRunner from './CodeRunner';
+import { autoBinding } from '../utils/';
 
-var results = []
-function view(arg) {
-	arg = observable(arg)
-	/* 观察状态改变的函数 */
-	autorun(function() {
-	    console.log(
-	        arg.slice()
-	    );
-        results.push(arg.slice());
-	});
-	return arg
-}
+var runner = new CodeRunner();
 
 class CodeEditor extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(...args) {
+        super(...args);
         this.state = {
             code: `let a = view([1,2,3]);\nswap(1,2,a);`,
         };
-        this.onChange = this.onChange.bind(this);
-        this.handleRun = this.handleRun.bind(this);
-        this.handleNext = this.handleNext.bind(this);
+        autoBinding([
+            'onChange',
+            'handleRun',
+            'handleNext'],
+        this);
     }
     
     onChange(e) {
@@ -37,8 +24,14 @@ class CodeEditor extends Component {
     }
     
     handleRun() {
-        eval(this.state.code);
-        this.props.onRun(results);
+        try {
+            let processData = runner.runCode(this.state.code);
+            // this code position ?
+            this.props.onRun(processData);
+        } catch(e) {
+            //TODO: log error message
+            throw new Error(e);
+        }
     }
     
     handleNext(){
