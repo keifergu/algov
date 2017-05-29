@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import {
     BrowserRouter as Router,
-    Route
+    Route,
+    Redirect
 } from 'react-router-dom';
 
 import App from './components/App';
@@ -20,6 +21,8 @@ ReactDOM.render(
     <Router>
       <div>
         <Route path="/" component={App} />
+        <Redirect from="/" to="home" />
+        <Route path="/home" component={Home} />
         <Route path="/algorithm" component={AlgorithmList}/>
         <Route path="/playground" component={Playground}/>
       </div>

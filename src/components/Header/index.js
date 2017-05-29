@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Layout } from 'antd';
 import { Link } from 'react-router-dom';
 
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+const { Header } = Layout;
 
-class Header extends Component {
+class MyHeader extends Component {
     constructor() {
         super();
+        ;
     }
     render() {
         return (
-            <div>
-                <Menu mode="horizontal">
+            <Header>
+                <div className="logo" />
+                <Menu mode="horizontal" theme="dark" style={{ lineHeight: '64px' }}>
                     <Menu.Item key="home">
-                        <Link to="/"><Icon type="home" />Home</Link>
+                        <Link to="/home"><Icon type="home" />Home</Link>
                     </Menu.Item>
                     <Menu.Item key="algorithm">
                         <Link to="/algorithm"><Icon type="home" />Algorithm</Link>
@@ -23,9 +24,9 @@ class Header extends Component {
                         <Link to="/playground"><Icon type="home" />Playground</Link>
                     </Menu.Item>
                 </Menu>
-            </div>
+            </Header>
         );
     }
 }
 
-export default Header;
+export default MyHeader;

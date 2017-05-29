@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import CodeMirror from 'react-codemirror';
-import { inject } from 'mobx-react';
 import CodeRunner from './CodeRunner';
+import { inject } from 'mobx-react';
 import { autoBinding } from '../../utils/';
 import { bubbleSort } from '../../algorithm';
+
+import CodeMirror from 'react-codemirror';
+import { Button } from 'antd';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
@@ -54,8 +56,8 @@ const CodeEditor = inject('algoDataStore')(
                         value={this.state.code}
                         onChange={this.updateCode}
                     />
-                    <button onClick={this.handleRun}>run</button>
-                    <button onClick={this.handleNext}>next</button>
+                    <Button type="primary" onClick={this.handleRun}>run</Button>
+                    <Button type="primary" onClick={this.handleNext}>next</Button>
                 </div>
             );
         }

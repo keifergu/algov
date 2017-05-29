@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import VisualCanvas from '../VisualCanvas';
-import CodeEditor from '../CodeEditor';
+import VisualAlgo from '../VisualAlgo';
 
 class Playground extends Component {
     render() {
         return (
             <div>
-                <VisualCanvas />
-                <CodeEditor />
+                <VisualAlgo />
             </div>
         );
     }
