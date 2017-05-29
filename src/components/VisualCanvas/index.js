@@ -4,11 +4,11 @@ import { inject, observer } from 'mobx-react';
 
 import Histogram from './components/Histogram';
 
-const Visual = inject('algoDataStore')(observer(
-    class Visual extends Component {
+const VisualCanvas = inject('algoDataStore')(observer(
+    class VisualCanvas extends Component {
         render() {
             const boundary = {
-                width: 500,
+                width: 400,
                 height: 300
             };
             const list = this.props.algoDataStore.currentData;
@@ -22,4 +22,4 @@ const Visual = inject('algoDataStore')(observer(
         }
     }
 ))
-export default Visual;
+export default VisualCanvas;
