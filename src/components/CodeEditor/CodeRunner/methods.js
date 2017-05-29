@@ -8,7 +8,11 @@ export function swap(array, i, j){
 	if(array instanceof Array !== true) {
 		throw new TypeError('swap accept an array');
 	}
-	let tmp = array[i];
-	array[i] = array[j];
-	array[j] = tmp;
+	let tmpArray = array.slice();
+
+	let tmp = tmpArray[i];
+	tmpArray[i] = tmpArray[j];
+	tmpArray[j] = tmp;
+	
+	array.replace(tmpArray);
 }
