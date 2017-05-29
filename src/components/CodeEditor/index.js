@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import CodeMirror from 'react-codemirror';
 import { inject } from 'mobx-react';
 import CodeRunner from './CodeRunner';
 import { autoBinding } from '../../utils/';
+import { bubbleSort } from '../../algorithm';
+
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/javascript/javascript';
 
 const runner = new CodeRunner();
 
@@ -10,18 +15,17 @@ const CodeEditor = inject('algoDataStore')(
         constructor(...args) {
             super(...args);
             this.state = {
-                code: `let a = observe([1,2,3]);\nswap(a,1,2);`,
+                code: bubbleSort,
             };
             autoBinding([
-                'onChange',
+                'updateCode',
                 'handleRun',
                 'handleNext'],
             this);
         }
         
-        onChange(e) {
-            let code = e.target.value;
-            this.setState({code});
+        updateCode(newCode) {
+            this.setState({code:newCode});
         }
         
         handleRun() {
@@ -39,11 +43,16 @@ const CodeEditor = inject('algoDataStore')(
             this.props.algoDataStore.next();
         }
         render() {
+            var options = {
+		    	lineNumbers: true,
+                mode: 'javascript'
+		    };
             return (
                 <div>
-                    <textarea type="text"
+                    <CodeMirror
+                        options={options}
                         value={this.state.code}
-                        onChange={this.onChange}
+                        onChange={this.updateCode}
                     />
                     <button onClick={this.handleRun}>run</button>
                     <button onClick={this.handleNext}>next</button>

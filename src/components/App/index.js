@@ -4,7 +4,6 @@ import { autoBinding } from '../../utils';
 import Visual from '../Visual';
 import CodeEditor from '../CodeEditor';
 import DevTools from 'mobx-react-devtools';
-import './App.css';
 
 class App extends Component {
     constructor(...args) {
