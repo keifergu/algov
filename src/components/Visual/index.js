@@ -7,14 +7,17 @@ import Histogram from './components/Histogram';
 const Visual = inject('algoDataStore')(observer(
     class Visual extends Component {
         render() {
-            var list = this.props.algoDataStore.currentData;
+            const boundary = {
+                width: 500,
+                height: 300
+            };
+            const list = this.props.algoDataStore.currentData;
             return (
-                <Stage width={500} height={300}>
-                    <Layer>
-                        <Histogram list={list}/>
+                <Stage {...boundary}>
+                    <Layer ref="layer">
+                        <Histogram list={list} {...this.refs}/>
                     </Layer>
                 </Stage>
-
             );
         }
     }
