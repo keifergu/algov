@@ -3,7 +3,7 @@ import { autoBinding } from '../../utils';
 
 import Visual from '../Visual';
 import CodeEditor from '../CodeEditor';
-
+import DevTools from 'mobx-react-devtools';
 import './App.css';
 
 class App extends Component {
@@ -41,6 +41,7 @@ class App extends Component {
             <div className = "App" >
                 <Visual list={results[index]}/>
                 <CodeEditor onRun={this.handleRun} onNext={this.handleNext} />
+                <DevTools />
             </div>
         );
     }

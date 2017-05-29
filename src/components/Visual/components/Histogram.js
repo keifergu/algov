@@ -4,7 +4,6 @@ import { Rect, Group } from 'react-konva';
 class Histogram extends Component {
     render() {
         var list = this.props.list || [];
-        // var list = [1,3,2]
         return (
             <Group>
                 {list.map((v,k)=>{
