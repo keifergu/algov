@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { autoBinding } from './utils';
+import { autoBinding } from '../../utils';
 
-import Visual from './Visual';
-import CodeEditor from './CodeEditor';
+import Visual from '../Visual';
+import CodeEditor from '../CodeEditor';
 
 import './App.css';
 

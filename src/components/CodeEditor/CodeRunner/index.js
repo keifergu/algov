@@ -22,7 +22,7 @@ export default class CodeRunner {
 
 		let runner = function(observe,swap){
 			// eslint-disable-next-line
-			eval(`let a = observe([1,2,3]);\nswap(a,1,2);`);
+			eval(code);
 		}
 
 		runner.call(null,observe,...methods);
@@ -31,6 +31,7 @@ export default class CodeRunner {
 
 	/**
 	 * 对数据建立观测
+	 * 在输入的代码中使用该方法创建变量，即可将变量的变化过程保存
 	 * @param {*} arg 需要观测的数据
 	 */
 	[privateMethod.observe](data) {

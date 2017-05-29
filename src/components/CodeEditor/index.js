@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import CodeRunner from './CodeRunner';
-import { autoBinding } from '../utils/';
+import { autoBinding } from '../../utils/';
 
 var runner = new CodeRunner();
 
@@ -9,7 +9,7 @@ class CodeEditor extends Component {
     constructor(...args) {
         super(...args);
         this.state = {
-            code: `let a = view([1,2,3]);\nswap(1,2,a);`,
+            code: `let a = observe([1,2,3]);\nswap(a,1,2);`,
         };
         autoBinding([
             'onChange',
