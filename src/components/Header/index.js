@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom';
 const { Header } = Layout;
 
 class MyHeader extends Component {
-    constructor() {
-        super();
-        ;
-    }
     render() {
         return (
             <Header>

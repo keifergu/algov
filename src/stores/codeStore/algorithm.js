@@ -7,3 +7,6 @@ for(var i = 0; i < n; i++) {
             swap(list, i, j);
 }
 `
+
+export const quickSort = 
+`var quickSort`
