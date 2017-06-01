@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import VisualAlgo from '../VisualAlgo';
 import { Layout, Menu, Icon } from 'antd';
-import { autoBinding } from '../../utils';
 import { inject } from 'mobx-react';
+import * as algorithm from '../../assert/algorithm';
 
 const { SubMenu } = Menu;
 const { Sider, Content } = Layout;
 
 class AlgorithmList extends Component {
+    constructor() {
+        super();
+        this.state = {algorithmName:'bubbleSort'}
+    }
+
+    changeAlgorithmName(e) {
+        this.setState({algorithmName:e.key});
+    }
+
     render() {
         const menuList = [
             {
@@ -34,13 +43,15 @@ class AlgorithmList extends Component {
                 items:[]
             },
         ];
+        const name = this.state.algorithmName;
         return (
             <Layout>
                 <Sider width={200} style={{ background: '#fff' }}>
                     <Menu
                     mode="inline"
-                    defaultSelectedKeys={['1']}
+                    defaultSelectedKeys={['bubbleSort']}
                     defaultOpenKeys={['sort']}
+                    onClick={(e)=>{this.changeAlgorithmName(e)}}
                     style={{ height: '100%' }}
                     >
                     {menuList.map((menu) => (
@@ -51,7 +62,7 @@ class AlgorithmList extends Component {
                     </Menu>
                 </Sider>
                 <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-                    <VisualAlgo />
+                    <VisualAlgo code={algorithm[name]}/>
                 </Content>
             </Layout>
         );
